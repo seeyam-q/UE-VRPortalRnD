@@ -38,13 +38,14 @@ public:
     	}
     	
         // Apply eye matrix
-        EStereoscopicPass StereoPass = bIsLeftEye ? EStereoscopicPass::eSSP_LEFT_EYE : eSSP_RIGHT_EYE;
+        //EStereoscopicPass StereoPass = bIsLeftEye ? EStereoscopicPass::eSSP_LEFT_EYE : eSSP_RIGHT_EYE;
+		int viewIndex = bIsLeftEye ? EStereoscopicEye::eSSE_LEFT_EYE : eSSE_RIGHT_EYE;
     	
         if (GEngine->StereoRenderingDevice.IsValid() && GEngine->IsStereoscopic3D() && GEngine->StereoRenderingDevice->IsStereoEnabled())
         {
             this->bUseCustomProjectionMatrix = true;
-            this->CustomProjectionMatrix = GEngine->StereoRenderingDevice->GetStereoProjectionMatrix(StereoPass);
-            this->CaptureStereoPass = StereoPass;
+            this->CustomProjectionMatrix = GEngine->StereoRenderingDevice->GetStereoProjectionMatrix(viewIndex);
+            //this->CaptureStereoPass = StereoPass;
         }
 
         // Apply eye offset
